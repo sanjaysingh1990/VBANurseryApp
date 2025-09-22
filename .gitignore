@@ -1,0 +1,90 @@
+### General ###
+*.iml
+*.ipr
+*.iws
+.idea/
+.gradle/
+build/
+out/
+!gradle/wrapper/gradle-wrapper.jar
+.DS_Store
+Thumbs.db
+
+### Kotlin/Java ###
+*.class
+*.jar
+*.war
+*.ear
+*.kotlin_module
+
+### Android ###
+local.properties
+*.apk
+*.ap_
+*.aab
+captures/
+.externalNativeBuild/
+.cxx/
+*.keystore
+*.jks
+app/release/
+app/debug/
+
+### iOS (Xcode, CocoaPods) ###
+*.xcuserstate
+*.xcworkspace/
+DerivedData/
+build/
+Pods/
+Podfile.lock
+project.xcworkspace/
+*.xcuserdatad/
+*.xcscmblueprint
+
+# iOS specific user data
+*.pbxuser
+*.mode1v3
+*.mode2v3
+
+# Carthage
+Carthage/Build/
+
+# SwiftPM
+.build/
+
+# Fastlane
+fastlane/report.xml
+fastlane/Preview.html
+fastlane/screenshots
+fastlane/test_output
+
+### Desktop (Compose, JVM) ###
+*.log
+*.hprof
+*.idea_modules/
+*.class
+*.exe
+*.dll
+
+### Web (Kotlin/JS) ###
+node_modules/
+package-lock.json
+yarn.lock
+dist/
+build/
+.gradle/
+.kotlinc/
+.kotlin/
+
+### VSCode (optional) ###
+.vscode/
+
+### IntelliJ ###
+.idea/
+*.iml
+
+### Others ###
+*.swp
+*.swo
+*.tmp
+*.temp
