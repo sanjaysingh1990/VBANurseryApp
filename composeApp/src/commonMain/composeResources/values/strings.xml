@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Plant Lovers App</string>
+    <string name="onboarding_title">Find Your Green Oasis</string>
+    <string name="onboarding_subtitle">Buy plants, learn care tips, and join our vibrant community.</string>
+    <string name="get_started">Get Started</string>
+    <string name="sign_in">Sign In</string>
 </resources>

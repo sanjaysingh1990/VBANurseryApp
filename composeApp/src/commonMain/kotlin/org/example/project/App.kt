@@ -6,10 +6,14 @@ import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.lifecycle.viewmodel.compose.viewModel
 import org.example.project.data.FakeSplashRepository
 import org.example.project.domain.CheckOnboardingUseCase
+import org.example.project.presentation.AppNavigationState
 import org.example.project.presentation.SplashViewModel
 import org.example.project.presentation.SplashUiState
 import org.example.project.ui.home.HomeScreen
@@ -26,23 +30,39 @@ fun App() {
             modifier = Modifier.fillMaxSize(),
             color = MaterialTheme.colorScheme.background
         ) {
-            val splashViewModel: SplashViewModel = viewModel {
-                val repository = FakeSplashRepository()
-                val useCase = CheckOnboardingUseCase(repository)
-                SplashViewModel(useCase)
-            }
+            var navigationState by remember { mutableStateOf<AppNavigationState>(AppNavigationState.Splash) }
             
-            val uiState by splashViewModel.uiState.collectAsState()
-            
-            when (uiState) {
-                SplashUiState.Loading -> {
-                    SplashScreen()
+            when (navigationState) {
+                is AppNavigationState.Splash -> {
+                    val splashViewModel: SplashViewModel = viewModel {
+                        val repository = FakeSplashRepository()
+                        val useCase = CheckOnboardingUseCase(repository)
+                        SplashViewModel(useCase)
+                    }
+                    
+                    val uiState by splashViewModel.uiState.collectAsState()
+                    
+                    when (uiState) {
+                        SplashUiState.Loading -> {
+                            SplashScreen()
+                        }
+                        SplashUiState.NavigateToHome -> {
+                            navigationState = AppNavigationState.Home
+                        }
+                        SplashUiState.NavigateToOnboarding -> {
+                            navigationState = AppNavigationState.Onboarding
+                        }
+                    }
                 }
-                SplashUiState.NavigateToHome -> {
+                is AppNavigationState.Onboarding -> {
+                    OnboardingScreen(
+                        onNavigateToHome = {
+                            navigationState = AppNavigationState.Home
+                        }
+                    )
+                }
+                is AppNavigationState.Home -> {
                     HomeScreen()
-                }
-                SplashUiState.NavigateToOnboarding -> {
-                    OnboardingScreen()
                 }
             }
         }

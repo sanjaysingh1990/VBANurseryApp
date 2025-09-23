@@ -43,8 +43,7 @@ fun AnimatedFlower(
             val petalPath = Path()
             
             // Create petal shape
-            val startAngleRad = Math.toRadians(angle.toDouble())
-            val endAngleRad = Math.toRadians((angle + 45).toDouble())
+            val startAngleRad = angle * kotlin.math.PI / 180.0
             
             val startPoint = Offset(
                 center.x + radius * 0.5f * kotlin.math.cos(startAngleRad.toFloat()),
@@ -56,13 +55,14 @@ fun AnimatedFlower(
                 center.y + radius * kotlin.math.sin(startAngleRad.toFloat())
             )
             
+            val controlAngleRad = (angle + 22.5) * kotlin.math.PI / 180.0
             val controlPoint = Offset(
-                center.x + radius * 0.8f * kotlin.math.cos(Math.toRadians(angle + 22.5).toFloat()),
-                center.y + radius * 0.8f * kotlin.math.sin(Math.toRadians(angle + 22.5).toFloat())
+                center.x + radius * 0.8f * kotlin.math.cos(controlAngleRad.toFloat()),
+                center.y + radius * 0.8f * kotlin.math.sin(controlAngleRad.toFloat())
             )
             
             petalPath.moveTo(startPoint.x, startPoint.y)
-            petalPath.quadraticBezierTo(
+            petalPath.quadraticTo(
                 controlPoint.x, controlPoint.y,
                 endPoint.x, endPoint.y
             )

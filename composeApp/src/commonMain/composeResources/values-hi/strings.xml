@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">प्लांट लवर्स ऐप</string>
+    <string name="onboarding_title">अपना हरियाली का कोना खोजें</string>
+    <string name="onboarding_subtitle">पौधे खरीदें, देखभाल युक्तियाँ सीखें और हमारे सक्रिय समुदाय में शामिल हों।</string>
+    <string name="get_started">शुरू करें</string>
+    <string name="sign_in">साइन इन करें</string>
 </resources>
